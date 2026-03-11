@@ -6,7 +6,7 @@ import { User } from '../../features/user/model/user.model';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthStateService {
   private readonly userSubject = new BehaviorSubject<AuthResponse | null>(null);
 
   constructor() {

@@ -1,0 +1,26 @@
+.input-auth-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+.input-auth-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+.input-auth-group input {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    font-family: inherit;
+}
+.input-auth-group input.is-invalid {
+    border-color: #dc3545;
+}
+.error-message {
+    color: #dc3545;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}

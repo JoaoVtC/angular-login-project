@@ -1,0 +1,12 @@
+<button
+    class="button-auth"
+    [disabled]="disabled || loading"
+    (click)="click.emit()"
+>
+    @if(!loading){
+        <span>{{ label }}</span>
+    }
+    @else{
+        <span>Carregando...</span>
+    }  
+</button>

@@ -1,0 +1,8 @@
+<div class="input-auth-group">
+    <label>{{ label }}</label>
+    <input
+        [type]="type"
+        [value]="value"
+        (input)="change.emit($event.target.value)"
+    />
+</div>

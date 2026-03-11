@@ -1,0 +1,13 @@
+<div class="card-user">
+    <div class="card-header">
+        <h3>{{ title }}</h3>
+        
+        @if (subtitle) { 
+        <span class="card-subtitle">{{ subtitle }}</span>
+        }
+        
+    </div>
+    <div class="card-content">
+        <ng-content></ng-content>
+    </div>
+</div>

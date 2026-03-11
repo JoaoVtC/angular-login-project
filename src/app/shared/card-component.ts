@@ -1,9 +1,10 @@
 import { Component, Input } from "@angular/core";
 
 @Component({
-    selector: "card-user",
-    templateUrl: "../templates/card-user.html",
-    styleUrl: "../templates/css/card-user.css"
+    selector: "card-component",
+    templateUrl: "./templates/card-user.html",
+    styleUrl: "./templates/css/card-user.css",
+    standalone: true
 })
 export class CardComponent{
 
