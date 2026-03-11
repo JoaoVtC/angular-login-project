@@ -1,19 +1,10 @@
-@Input() formData! : SignUpRequest;
-    @Input() loading!: boolean
-    @Input() error?: string
-    @Input() label!: string
-    @Output() emailChange = new EventEmitter<string>();
-    @Output() nameChange = new EventEmitter<string>();
-    @Output() passwordChange = new EventEmitter<string>();
-    @Output() submit = new EventEmitter<SignUpRequest>();
-
 <signup-component 
-[formData]="request()",
+[formData]="request()"
 [loading]="loading()"
 [error]="error()"
-(submit)="onSubmit()",
-(emailChange)="onEmailChange($event)",
-(nameChange)="onNameChange($event)",
-(passwordChange)="onPasswordChange($event)",
+(submit)="onSubmit()"
+(emailChange)="onEmailChange($event)"
+(nameChange)="onNameChange($event)"
+(passwordChange)="onPasswordChange($event)"
 (passwordConfirmChange)="onPasswordConfirmChange($event)"
 ></signup-component>

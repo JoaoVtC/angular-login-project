@@ -2,19 +2,22 @@
 <form (submit)="submit.emit()">
 
     <input-auth [type]="'text'" [value]="formData.name" (change)="nameChange.emit($event)" [label]="'Nome'"></input-auth>
-    
+
     <input-auth [type]="'email'" [value]="formData.email" (change)="emailChange.emit($event)" [label]="'Email'"></input-auth>
 
     <input-auth [type]="'password'" [value]="formData.password" (change)="passwordChange.emit($event)" [label]="'Senha'"></input-auth>
 
     <input-auth [type]="'password'" [value]="formData.passwordConfirm" (change)="passwordConfirmChange.emit($event)" [label]="'Confirmar Senha'"></input-auth>
-    @if(error){
-    <p class="error-message">{{error}}</p>
-    }
-
-    @else if(loading){
+    @if(isArray(error)){
+        <ul class="error-list">
+            @for(err of error; track $index){
+                <li class="error-message">{{err}}</li>
+            }
+        </ul>
+    } @else if(error){
+        <p class="error-message">{{error}}</p>
+    } @else if(loading){
         <div class="spinner"></div>
-
     }
 
     <button-auth [disabled]="loading" [label]="'Cadastrar'"></button-auth>

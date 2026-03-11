@@ -20,7 +20,7 @@ import { SignupFormComponent } from "../components/signup-form-component";
 })
 class SignupContainer{
     loading = signal(false);
-    error = signal<string | null>(null);
+    error = signal<string | null | string[]>(null);
 
     private readonly request = signal<SignUpRequest>({
         name: "",
@@ -29,7 +29,7 @@ class SignupContainer{
         passwordConfirm: "",
     })
 
-    private requestForm = form(this.request, (schemaPath) => {
+    private readonly requestForm = form(this.request, (schemaPath) => {
         required(schemaPath.email, {message: "Email is required"})
         required(schemaPath.password, {message: "password is required"})
         required(schemaPath.name, {message: "Name is required"})
@@ -45,19 +45,19 @@ class SignupContainer{
     public onSubmit(event: Event){
         event.preventDefault(); 
 
-        if (!this.request().email || !this.request().email.includes('@')
-) {
-            this.error.set("Email inválido");
+        if (this.requestForm.email().value())
+        {
+            this.error.set(this.requestForm.email().value());
             return;
         }
     
-        if (!this.request().name || this.request().name.length < 3) {
-            this.error.set("Nome deve ter no mínimo 3 caracteres");
+        if (this.requestForm.name().value()) {
+            this.error.set(this.requestForm.name().value());
             return;
         }
         
-        if (!this.request().password || this.request().password.length < 8) {
-            this.error.set("Senha deve ter no mínimo 8 caracteres");
+        if (this.requestForm.password().value()) {
+            this.error.set(this.requestForm.name().value());
             return;
         }
 

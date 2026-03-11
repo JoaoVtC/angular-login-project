@@ -13,11 +13,15 @@ import { InputComponent } from "../../../shared/input-component";
 export class SignupFormComponent{
     @Input() formData! : SignUpRequest;
     @Input() loading!: boolean
-    @Input() error?: string
+    @Input() error?: string | string[] | null
     @Input() label!: string
     @Output() emailChange = new EventEmitter<string>();
     @Output() nameChange = new EventEmitter<string>();
     @Output() passwordChange = new EventEmitter<string>();
     @Output() passwordConfirmChange = new EventEmitter<string>();
     @Output() submit = new EventEmitter<SignUpRequest>();
+    
+    isArray(value: any): boolean {
+        return Array.isArray(value);
+    }
 }
