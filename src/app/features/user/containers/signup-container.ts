@@ -13,16 +13,17 @@ import { SignupFormComponent } from "../components/signup-form-component";
     templateUrl: "../templates/signup-container.html",
     styleUrl: "../templates/css/signup-container.css",
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 
 @Injectable({
     providedIn: "root"
 })
-class SignupContainer{
+export class SignupContainer{
     loading = signal(false);
     error = signal<string | null | string[]>(null);
 
-    private readonly request = signal<SignUpRequest>({
+    readonly request = signal<SignUpRequest>({
         name: "",
         email: "",
         password: "",
@@ -42,9 +43,7 @@ class SignupContainer{
 
     constructor(private readonly authService: AuthService,  private readonly router: Router  ){}
 
-    public onSubmit(event: Event){
-        event.preventDefault(); 
-
+    public onSubmit(formData: SignUpRequest){
         if (this.requestForm.email().value())
         {
             this.error.set(this.requestForm.email().value());
@@ -57,7 +56,7 @@ class SignupContainer{
         }
         
         if (this.requestForm.password().value()) {
-            this.error.set(this.requestForm.name().value());
+            this.error.set(this.requestForm.password().value());
             return;
         }
 
@@ -66,8 +65,22 @@ class SignupContainer{
             return;
         }
 
-        this.authService.signUp(this.request());
-        this.router.navigate(["/dashboard"]);
+        this.loading.set(true);
+
+        this.authService.signUp(this.request()).subscribe({
+            next: (response: any) => {
+                if (response.code) {
+                    this.error.set(response.message);
+                } else {
+                    this.router.navigate(["/login"]);
+                }
+                this.loading.set(false);
+            },
+            error: (err: any) => {
+                this.error.set("Erro ao fazer cadastro");
+                this.loading.set(false);
+            }
+        });
     }
 
     public onNameChange(name: string){

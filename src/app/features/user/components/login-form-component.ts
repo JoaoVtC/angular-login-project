@@ -1,27 +1,30 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { SignUpRequest } from "../model/signup.request";
 import { CardComponent } from "../../../shared/card-component";
 import { ButtonComponent } from "../../../shared/button-component";
 import { InputComponent } from "../../../shared/input-component";
+import { LoginRequest } from "../model/login.request";
+import { RouterLink } from "@angular/router";
 
 @Component({
-    selector: "signup-component",
-    templateUrl: "../templates/signup-component.html",
-    styleUrl: "../templates/css/signup-component.css",
-    imports: [CardComponent, ButtonComponent, InputComponent],
+    selector: "login-component",
+    templateUrl: "../templates/login-component.html",
+    styleUrl: "../templates/css/login-component.css",
+    imports: [CardComponent, ButtonComponent, InputComponent, RouterLink],
     standalone: true
 })
-export class SignupFormComponent{
-    @Input() formData!: SignUpRequest;
+
+export class LoginFormComponent {
+    @Input() formData!: LoginRequest;
     @Input() loading!: boolean
     @Input() error?: string | string[] | null
     @Output() emailChange = new EventEmitter<string>();
-    @Output() nameChange = new EventEmitter<string>();
     @Output() passwordChange = new EventEmitter<string>();
-    @Output() passwordConfirmChange = new EventEmitter<string>();
-    @Output() formSubmit = new EventEmitter<SignUpRequest>();
-    
+    @Output() formSubmit = new EventEmitter<LoginRequest>()
+
     isArray(value: any): boolean {
         return Array.isArray(value);
     }
 }
+// - 
+// - Form reativo com: email, password
+// - Link "Não tem conta? Cadastre-se" → /auth/signup

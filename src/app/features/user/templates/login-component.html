@@ -1,13 +1,10 @@
-<card-component [title]="'Cadastre-se'" [subtitle]="'Teste o meu primeiro projeto Angular!'">
+<card-component [title]="'Login'" [subtitle]="'Teste o meu primeiro projeto Angular!'">
 <form (submit)="formSubmit.emit(formData)">
-
-    <input-auth [type]="'text'" [value]="formData.name" (change)="nameChange.emit($event)" [label]="'Nome'"></input-auth>
 
     <input-auth [type]="'email'" [value]="formData.email" (change)="emailChange.emit($event)" [label]="'Email'"></input-auth>
 
     <input-auth [type]="'password'" [value]="formData.password" (change)="passwordChange.emit($event)" [label]="'Senha'"></input-auth>
 
-    <input-auth [type]="'password'" [value]="formData.passwordConfirm" (change)="passwordConfirmChange.emit($event)" [label]="'Confirmar Senha'"></input-auth>
     @if(isArray(error)){
         <ul class="error-list">
             @for(err of error; track $index){
@@ -20,6 +17,11 @@
         <div class="spinner"></div>
     }
 
-    <button-auth [disabled]="loading" [label]="'Cadastrar'"></button-auth>
+    <p class="signup-link">
+    Não tem conta? 
+    <a routerLink="/auth/signup">Cadastre-se</a>
+    </p>
+
+    <button-auth [disabled]="loading" [label]="'Entrar'"></button-auth>
 </form>
 </card-component>
