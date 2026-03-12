@@ -1,9 +1,9 @@
 <card-component [title]="'Login'" [subtitle]="'Teste o meu primeiro projeto Angular!'">
-<form (submit)="formSubmit.emit(formData)">
+<form (submit)="$event.preventDefault(); formSubmit.emit(formData)">
 
-    <input-auth [type]="'email'" [value]="formData.email" (change)="emailChange.emit($event)" [label]="'Email'"></input-auth>
+    <input-auth [type]="'email'" [value]="formData.email" (valueChange)="emailChange.emit($event)" [label]="'Email'"></input-auth>
 
-    <input-auth [type]="'password'" [value]="formData.password" (change)="passwordChange.emit($event)" [label]="'Senha'"></input-auth>
+    <input-auth [type]="'password'" [value]="formData.password" (valueChange)="passwordChange.emit($event)" [label]="'Senha'"></input-auth>
 
     @if(isArray(error)){
         <ul class="error-list">
@@ -19,7 +19,7 @@
 
     <p class="signup-link">
     Não tem conta? 
-    <a routerLink="/auth/signup">Cadastre-se</a>
+    <a routerLink="/signup">Cadastre-se</a>
     </p>
 
     <button-auth [disabled]="loading" [label]="'Entrar'"></button-auth>

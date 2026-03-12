@@ -4,6 +4,6 @@
         [id]="'input-' + label"
         [type]="type"
         [value]="value"
-        (input)="change.emit($event.target.value)"
+        (input)="valueChange.emit($any($event.target).value)"
     />
 </div>

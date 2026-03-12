@@ -10,5 +10,5 @@ export class InputComponent{
     @Input() label!: string
     @Input() type: 'email' | 'password' | 'text' = 'text'
     @Input() value: string = ''
-    @Output() change = new EventEmitter<string>()
+    @Output() valueChange = new EventEmitter<string>()
 }
